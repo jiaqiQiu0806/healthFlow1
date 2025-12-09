@@ -1,0 +1,20 @@
+{
+  "short_name": "HealthFlow",
+  "name": "HealthFlow",
+  "icons": [
+    {
+      "src": "https://placehold.co/192x192/FF7F50/ffffff.png?text=HF",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://placehold.co/512x512/FF7F50/ffffff.png?text=HF",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FF7F50",
+  "background_color": "#F7F9FC"
+}
