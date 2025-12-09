@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Share, SquarePlus, X } from 'lucide-react';
+import { Share, PlusSquare, X } from 'lucide-react';
 
 export const InstallPrompt = () => {
   const [showPrompt, setShowPrompt] = useState(false);
@@ -41,7 +41,7 @@ export const InstallPrompt = () => {
           <span>1. 点击浏览器底部的 <b>分享</b> 按钮</span>
         </div>
         <div className="flex items-center gap-3 text-sm text-gray-700">
-           <span className="bg-white p-2 rounded shadow-sm text-gray-600"><SquarePlus className="w-5 h-5" /></span>
+           <span className="bg-white p-2 rounded shadow-sm text-gray-600"><PlusSquare className="w-5 h-5" /></span>
            <span>2. 选择 <b>添加到主屏幕</b></span>
         </div>
       </div>
