@@ -1,11 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import CalendarView from './components/CalendarView';
 import DayModal from './components/DayModal';
-import AIInsights from './components/AIInsights';
 import { InstallPrompt } from './components/InstallPrompt';
 import { HealthRecord } from './types';
 import { getRecords, saveRecord, getAllRecordsArray } from './services/storage';
-import { Plus } from 'lucide-react';
+import { Plus, Smile } from 'lucide-react';
 
 const App: React.FC = () => {
   const [records, setRecords] = useState<Record<string, HealthRecord>>({});
@@ -53,10 +53,7 @@ const App: React.FC = () => {
         {/* Calendar */}
         <CalendarView records={records} onSelectDate={handleSelectDate} />
 
-        {/* AI Section */}
-        <AIInsights records={recordsArray} />
-
-        {/* Recent List (Optional Overview) */}
+        {/* Recent List */}
         <div className="space-y-3">
           <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider px-1">最近记录</h3>
           {recordsArray.slice(0, 5).map(r => (
@@ -67,10 +64,17 @@ const App: React.FC = () => {
              >
                <div>
                  <div className="font-bold text-gray-800">{r.id}</div>
-                 <div className="text-xs text-gray-500 mt-1 flex gap-2">
-                   {r.sleepHours > 0 && <span>🛌 {r.sleepHours}h</span>}
-                   {r.pain.level > 0 && <span className="text-orange-500">⚡ 疼痛 {r.pain.level}</span>}
-                   {r.exercise && <span className="text-green-600">🏃 {r.exercise.substring(0, 10)}...</span>}
+                 <div className="text-xs text-gray-500 mt-1 flex flex-col gap-1">
+                   {r.mood && r.mood.tags.length > 0 && (
+                     <span className="text-blue-600 flex items-center gap-1">
+                        <Smile className="w-3 h-3" /> {r.mood.tags.join(', ')}
+                     </span>
+                   )}
+                   <div className="flex gap-3 mt-1">
+                    {r.sleep?.bedtime && <span>🛌 {r.sleep.bedtime}入睡</span>}
+                    {Array.isArray(r.pain) && r.pain.length > 0 && <span className="text-orange-500">⚡ {r.pain.length}处不适</span>}
+                    {r.exercise?.type && r.exercise.type !== '无' && <span className="text-green-600">🏃 {r.exercise.type}</span>}
+                   </div>
                  </div>
                </div>
                <div className="text-gray-300">

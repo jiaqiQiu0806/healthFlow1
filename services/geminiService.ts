@@ -20,11 +20,12 @@ export const analyzeHealthData = async (records: HealthRecord[], query?: string)
     // Prepare a summary of the last 7 days for context
     const recentRecords = records.slice(0, 7).map(r => ({
       date: r.id,
-      sleep: r.sleepHours,
+      sleep: r.sleep,
       diet: r.diet,
       exercise: r.exercise,
       pain: r.pain,
-      mood: r.notes
+      mood: r.mood,
+      notes: r.notes
     }));
 
     const prompt = query 
